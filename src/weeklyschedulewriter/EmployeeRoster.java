@@ -1,5 +1,7 @@
 package weeklyschedulewriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /*
@@ -8,39 +10,50 @@ import java.util.ArrayList;
 
 public class EmployeeRoster {
 
-    ArrayList<Employee> myEmps = new ArrayList();
+    ArrayList<Employee> employees;
 
     public EmployeeRoster() {
+        this.employees = new ArrayList();
     }
 
     public EmployeeRoster(ArrayList<Employee> myEmps){
-        this.myEmps = myEmps;
+        this.employees = myEmps;
     }
     
     public ArrayList<Employee> getMyEmps() {
-        return myEmps;
+        return employees;
     }
 
     public void setMyEmps(ArrayList<Employee> myEmps) {
-        this.myEmps = myEmps;
+        this.employees = myEmps;
     }
     
     public void addEmployee(Employee emp) {
-        this.myEmps.add(emp);
+        this.employees.add(emp);
     }
 
     public void deleteEmployee(Employee emp) {
-        this.myEmps.remove(emp);
+        this.employees.remove(emp);
     }
 
     public String toString() {
         String toReturn = "";
 
-        for (int i = 0; i < this.myEmps.size(); i++) {
-            toReturn = toReturn + "\n" + this.myEmps.get(i).name;
+        for (int i = 0; i < this.employees.size(); i++) {
+            toReturn = toReturn + "\n" + this.employees.get(i).name;
         }
 
         return toReturn;
+    }
+    
+    public void writeToFile(EmployeeRoster toWrite, String filename) throws IOException {
+        EmployeeRosterReaderWriter temp = new EmployeeRosterReaderWriter();
+        temp.writeToFile(toWrite, filename);
+    }
+
+    public EmployeeRoster readFromFile(String filename) throws IOException, FileNotFoundException, ClassNotFoundException {
+        EmployeeRosterReaderWriter temp = new EmployeeRosterReaderWriter();
+        return temp.readFromFile(filename);
     }
 
 }

@@ -99,6 +99,14 @@ public class Employee implements Serializable {
     public void setNumberOfShiftsICanCover(int numberOfShiftsICanCover) {
         this.numberOfShiftsICanCover = numberOfShiftsICanCover;
     }
+    
+    public void incrementNumberOfShiftsICanCover(){
+        this.numberOfShiftsICanCover = this.numberOfShiftsICanCover + 1;
+    }
+    
+    public void decrementNumberOfShiftsICanCover(){
+        this.numberOfShiftsICanCover = this.numberOfShiftsICanCover - 1;
+    }
 
     public void whoAmI() {
         System.out.println("name: " + this.name);

@@ -1,15 +1,12 @@
 package weeklyschedulewriter;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-/*
- * @author george oster
+/**
+ * @author george
  */
-
-public class WeeklySchedule implements Serializable{
+public class WeeklySchedule implements Serializable {
 
     ArrayList<Shift> shiftsForWeek;
     
@@ -36,15 +33,4 @@ public class WeeklySchedule implements Serializable{
     public void removeShiftFromWeek(Shift toRemove){
         this.shiftsForWeek.remove(toRemove);
     }
-    
-    public void writeToFile(WeeklySchedule toWrite, String filename) throws IOException {
-        WeeklyScheduleReaderWriter temp = new WeeklyScheduleReaderWriter();
-        temp.writeToFile(toWrite, filename);
-    }
-
-    public WeeklySchedule readFromFile(String filename) throws IOException, FileNotFoundException, ClassNotFoundException {
-        WeeklyScheduleReaderWriter temp = new WeeklyScheduleReaderWriter();
-        return temp.readFromFile(filename);
-    }
-    
 }

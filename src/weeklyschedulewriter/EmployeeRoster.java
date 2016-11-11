@@ -2,13 +2,13 @@ package weeklyschedulewriter;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-/*
- * @author george oster
+/**
+ * @author george
  */
-
-public class EmployeeRoster {
+public class EmployeeRoster implements Serializable {
 
     ArrayList<Employee> employees;
 
@@ -16,18 +16,16 @@ public class EmployeeRoster {
         this.employees = new ArrayList();
     }
 
-    public EmployeeRoster(ArrayList<Employee> myEmps){
-        this.employees = myEmps;
-    }
-    
-    public ArrayList<Employee> getMyEmps() {
-        return employees;
+    public void writeToFile(EmployeeRoster toWrite, String filename) throws IOException {
+        EmployeeRosterReaderWriter temp = new EmployeeRosterReaderWriter();
+        temp.writeToFile(toWrite, filename);
     }
 
-    public void setMyEmps(ArrayList<Employee> myEmps) {
-        this.employees = myEmps;
+    public EmployeeRoster readFromFile(String filename) throws IOException, FileNotFoundException, ClassNotFoundException {
+        EmployeeRosterReaderWriter temp = new EmployeeRosterReaderWriter();
+        return temp.readFromFile(filename);
     }
-    
+
     public void addEmployee(Employee emp) {
         this.employees.add(emp);
     }
@@ -45,15 +43,9 @@ public class EmployeeRoster {
 
         return toReturn;
     }
-    
-    public void writeToFile(EmployeeRoster toWrite, String filename) throws IOException {
-        EmployeeRosterReaderWriter temp = new EmployeeRosterReaderWriter();
-        temp.writeToFile(toWrite, filename);
-    }
 
-    public EmployeeRoster readFromFile(String filename) throws IOException, FileNotFoundException, ClassNotFoundException {
-        EmployeeRosterReaderWriter temp = new EmployeeRosterReaderWriter();
-        return temp.readFromFile(filename);
+    public ArrayList<Employee> getMyEmps() {
+        return employees;
     }
 
 }

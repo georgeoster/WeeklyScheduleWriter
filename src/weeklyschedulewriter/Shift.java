@@ -3,6 +3,9 @@ package weeklyschedulewriter;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+
 /*
  * @author george
  */
@@ -23,6 +26,9 @@ public class Shift implements Serializable{
     Employee coveredBy;//obviously, the employee who will be assigned to this shift
     
     public Shift (){
+        this.jobrole = "";
+        this.shift = new int[3];
+        this.canBeCoveredBy = new ArrayList();
     }
     
     public Shift (String jobrole, int[] shift){
@@ -79,6 +85,13 @@ public class Shift implements Serializable{
 
     public void setJobrole(String jobrole) {
         this.jobrole = jobrole;
+    }
+    
+    public void whoAmI(){
+        System.out.println("role: " + this.jobrole);
+        System.out.println(" day: " + this.shift[0]);
+        System.out.println("from: " + this.shift[1]);
+        System.out.println("  to: " + this.shift[2]);
     }
     
     

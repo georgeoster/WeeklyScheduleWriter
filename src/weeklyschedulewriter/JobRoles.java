@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /*
- * @author george oster
+ * @author george
  */
 public class JobRoles implements Serializable {
 
@@ -41,16 +41,15 @@ public class JobRoles implements Serializable {
         JobRolesReaderWriter temp = new JobRolesReaderWriter();
         return temp.readFromFile(filename);
     }
-
-    public void whoAmI() {
-
+    
+    public void whoAmI(){
+        
         System.out.println("Roles Are As Follows: ");
-
+        
         int i;
-        for (i = 0; i < roles.size(); i++) {
+        for (i=0; i < roles.size(); i++)
             System.out.println(roles.get(i));
-        }
-
+        
     }
 
 }

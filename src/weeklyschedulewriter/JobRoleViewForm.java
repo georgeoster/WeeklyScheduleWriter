@@ -16,15 +16,28 @@ public class JobRoleViewForm {
    
     JobRoles roles;
     
-    public JobRoleViewForm() {
-      
+    public JobRoleViewForm() throws IOException, FileNotFoundException, ClassNotFoundException{
+        
+        roles = new JobRoles();
+        File f = new File("roles.ser");
+        if ( f.exists()  ){
+            roles = roles.readFromFile("roles.ser");
+        }
         
         JFrame frame = new JFrame();
         frame.setLocation(100, 100);
         frame.setSize(200, 600);
         
         
-   
+        BoxLayout box = new BoxLayout(frame.getContentPane(), Y_AXIS);
+        frame.setLayout(box);
+        
+        int i;
+        for(i=0; i < roles.getRoles().size(); i++){
+            JTextField text = new JTextField(roles.getRoles().get(i));
+            text.setMaximumSize(text.getPreferredSize());
+            frame.add(text);
+        }
         frame.setVisible(true);
         
         

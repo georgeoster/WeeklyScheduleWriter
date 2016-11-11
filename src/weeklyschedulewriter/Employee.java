@@ -1,15 +1,15 @@
 package weeklyschedulewriter;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * @author george
  */
-public class Employee implements Serializable {
+public class Employee implements Serializable{
 
     String name;
     ArrayList<String> jobroles;
+    ArrayList<Shift> shiftsThisWeek;
     int availability[];
     int minHours;
     int maxHours;
@@ -27,11 +27,12 @@ public class Employee implements Serializable {
     public Employee(String name) {
         this.name = name;
         this.jobroles = new ArrayList();
-        this.availability = new int[24];
+        this.availability = new int[21];
         this.minHours = 0;
         this.maxHours = 0;
         this.currentlyScheduledHours = 0;
         this.numberOfShiftsICanCover = 0;
+        this.shiftsThisWeek = new ArrayList();
     }
 
     public String getName() {
@@ -91,6 +92,10 @@ public class Employee implements Serializable {
     public void setAlreadyScheduledOn(boolean[] alreadyScheduledOn) {
         this.alreadyScheduledOn = alreadyScheduledOn;
     }
+    
+    public void setSpecificAlreadyScheduledOn(int i, boolean value){
+        this.alreadyScheduledOn[i] = value;
+    }
 
     public int getNumberOfShiftsICanCover() {
         return numberOfShiftsICanCover;
@@ -100,12 +105,8 @@ public class Employee implements Serializable {
         this.numberOfShiftsICanCover = numberOfShiftsICanCover;
     }
     
-    public void incrementNumberOfShiftsICanCover(){
-        this.numberOfShiftsICanCover = this.numberOfShiftsICanCover + 1;
-    }
-    
-    public void decrementNumberOfShiftsICanCover(){
-        this.numberOfShiftsICanCover = this.numberOfShiftsICanCover - 1;
+    public void addShiftsThisWeek(Shift toAdd){
+        this.shiftsThisWeek.add(toAdd);
     }
 
     public void whoAmI() {
@@ -136,7 +137,7 @@ public class Employee implements Serializable {
             if (isAvailableToWorkShift(toCover)) {
 
                 if (!willPutIntoOvertime(toCover)) {
-                    //  System.out.println(this.name + " can work that shift");
+                      System.out.println(this.name + " can work that shift");
                     toReturn = true;
                 }
 
@@ -182,7 +183,7 @@ public class Employee implements Serializable {
     public boolean willPutIntoOvertime(Shift toCover) {//returns true if shift will push employee into overtime 
         boolean toReturn = false;
 
-        if (this.currentlyScheduledHours + (toCover.shift[2] - toCover.shift[1]) > this.maxHours) {
+        if ((this.currentlyScheduledHours + (toCover.shift[2] - toCover.shift[1])) > this.maxHours) {
             toReturn = true;
             System.out.println("That shift would put " + this.name + " at " + (this.currentlyScheduledHours + (toCover.shift[2] - toCover.shift[1])) + " hours\nfuckyou\n");
         }
@@ -208,5 +209,4 @@ public class Employee implements Serializable {
        so: alreadyScheduldedOn[ toCover-shift[0] -1 ]
          */
     }
-
 }

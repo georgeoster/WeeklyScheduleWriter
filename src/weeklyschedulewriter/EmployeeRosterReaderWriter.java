@@ -11,7 +11,7 @@ public class EmployeeRosterReaderWriter {
     }
     
     public void writeToFile(EmployeeRoster toWrite, String filename) throws FileNotFoundException, IOException{
-        FileOutputStream outStream = new FileOutputStream(filename+".ser");
+        FileOutputStream outStream = new FileOutputStream(filename);
         ObjectOutputStream ObjOutStream = new ObjectOutputStream(outStream);
         ObjOutStream.writeObject(toWrite);
         ObjOutStream.close();

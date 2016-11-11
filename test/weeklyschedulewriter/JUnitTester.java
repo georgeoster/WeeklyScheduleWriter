@@ -317,10 +317,12 @@ public class JUnitTester {
         tester.addShiftToWeek(temp);
         tester.addShiftToWeek(temp2);
         
-        tester.writeToFile(tester, "testfilename.ser");
+        WeeklyScheduleReaderWriter testerReaderWriter = new WeeklyScheduleReaderWriter();
+        
+        testerReaderWriter.writeToFile(tester, "testfilename.ser");
         
         WeeklySchedule didItWork = new WeeklySchedule();
-        didItWork = didItWork.readFromFile("testfilename.ser");
+        didItWork = testerReaderWriter.readFromFile("testfilename.ser");
         
         System.out.println( tester.getShiftsForWeek().get(0).getShift()[0]  );
         

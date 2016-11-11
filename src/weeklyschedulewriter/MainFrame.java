@@ -7,6 +7,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static javafx.scene.input.KeyCode.J;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -49,13 +51,27 @@ public class MainFrame {
 
         addJobRole.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-                JobRoleAddForm addJobRole = new JobRoleAddForm();
+                try {
+                    JobRoleAddForm addJobRole = new JobRoleAddForm();
+                } catch (IOException ex) {
+                    Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
 
         viewJobRole.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-                JobRoleViewForm viewJobRole = new JobRoleViewForm();
+                try {
+
+                    JobRoleViewForm viewJobRole = new JobRoleViewForm();
+
+                } catch (IOException ex) {
+                    Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
 
@@ -115,7 +131,13 @@ public class MainFrame {
 
         addEmployee.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-                EmployeeAddForm addEmployeeForm = new EmployeeAddForm();
+                try {
+                    EmployeeAddForm addEmployeeForm = new EmployeeAddForm();
+                } catch (IOException ex) {
+                    Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
 
@@ -144,7 +166,14 @@ public class MainFrame {
 
                     action[i] = new ActionListener() {
                         public void actionPerformed(ActionEvent e) {
-                            EmployeeViewForm view = new EmployeeViewForm(employees.getMyEmps().get(k));
+                            try {
+                                EmployeeViewForm view = new EmployeeViewForm(employees.getMyEmps().get(k));
+                            } catch (IOException ex) {
+                                Logger.getLogger(SelectEmployeeForm.class.getName()).log(Level.SEVERE, null, ex);
+                            } catch (ClassNotFoundException ex) {
+                                Logger.getLogger(SelectEmployeeForm.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+
                         }
                     };
 
@@ -172,7 +201,13 @@ public class MainFrame {
         writeSchedule.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ScheduleForm schedule = new ScheduleForm();
+                try {
+                    ScheduleForm schedule = new ScheduleForm();
+                } catch (IOException ex) {
+                    Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
 
         }

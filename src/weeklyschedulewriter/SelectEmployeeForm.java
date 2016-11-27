@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package weeklyschedulewriter;
 
 import java.awt.event.ActionEvent;
@@ -12,20 +7,15 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.AbstractAction;
-import javax.swing.Action;
 import javax.swing.BoxLayout;
 import static javax.swing.BoxLayout.Y_AXIS;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
 
-/**
- *
+/*
  * @author george
  */
+
 public class SelectEmployeeForm {
 
     EmployeeRoster employees;

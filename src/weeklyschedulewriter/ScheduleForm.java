@@ -22,6 +22,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import static javax.swing.SwingConstants.CENTER;
@@ -41,6 +42,7 @@ public class ScheduleForm {
     JComboBox[] to;
     JLabel[] start;
     JLabel[] end;
+    JFrame frame;
 
     public ScheduleForm() throws IOException, FileNotFoundException, ClassNotFoundException {
 
@@ -65,7 +67,7 @@ public class ScheduleForm {
         String[] days = {"", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
         String[] jobRoles = roles.getRoles().toArray(new String[roles.getRoles().size()]);
 
-        JFrame frame = new JFrame();
+        frame = new JFrame();
 
         JPanel panel = new JPanel();
         panel.setLayout(new GridBagLayout());
@@ -253,57 +255,16 @@ public class ScheduleForm {
                     break;
                 }
                 if ( (employeeIndex == employees.getMyEmps().size()-1)   &&  (toWrite.getShiftsForWeek().get(shiftIndex).getIsCovered() == false )       ){
-                    System.out.println("Housten, we have a serious problem.");//for testing purposes. if we see this on the console, the schedule was not able to be written
+                    JOptionPane.showMessageDialog(frame, "Schedule has NO SOLUTION.");
                 }
 
             }//end employeeIndex loop
         }//end shiftIndex loop
-        printSchedule();//for testing, to see the schedule that was written
+        
+        HTMLWriter writer = new HTMLWriter(employees);
+        writer.createHTMLFile();
+        JOptionPane.showMessageDialog(frame, "Schedule has been written.");
     }//end method
-
-    public void printSchedule(){//for testing. remove later
-        
-        String[] days = {"monday", "tuesday","wednesday","thursday","friday","saturday","sunday"};
-        
-        int i;
-        for (i=0; i < toWrite.shiftsForWeek.size(); i++){
-            System.out.println( 
-                    days[ toWrite.shiftsForWeek.get(i).getShift()[0]-1 ] + " " 
-                    + toWrite.shiftsForWeek.get(i).getJobrole() + 
-                    " from " + toWrite.shiftsForWeek.get(i).getShift()[1] +
-                    " to " + toWrite.shiftsForWeek.get(i).getShift()[2] +
-                    " covered by "  + toWrite.shiftsForWeek.get(i).getCoveredBy().getName() 
-                    ) ;
-                                
-        }
-       printByEmployee(); 
-    }
-    
-    
-    public void printByEmployee(){//for testing. remove later
-        String[] days = {"monday", "tuesday","wednesday","thursday","friday","saturday","sunday"};
-        int i;
-        for (i=0; i < employees.getMyEmps().size(); i++){
-            
-            for (int j=0; j < employees.getMyEmps().get(i).shiftsThisWeek.size(); j++){
-                
-                System.out.println(
-                        employees.getMyEmps().get(i).getName() + " " +
-                        employees.getMyEmps().get(i).shiftsThisWeek.get(j).getJobrole() + " " +
-                        days[ employees.getMyEmps().get(i).shiftsThisWeek.get(j).getShift()[0]-1 ] + 
-                        " from " + employees.getMyEmps().get(i).shiftsThisWeek.get(j).getShift()[1] +
-                        " to " + employees.getMyEmps().get(i).shiftsThisWeek.get(j).getShift()[2]
-                        
-                );
-                
-            }
-            
-        }
-        
-        
-        
-    }
-    
 
     
 }

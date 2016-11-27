@@ -52,7 +52,7 @@ public class JobRoleRemoveForm {
             Action action = new AbstractAction() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    roles.deleteJobRole(text.getText());     //addJobRole(text.getText());
+                    roles.deleteJobRole(text.getText());  
                     try {
                         roles.writeToFile(roles, "roles.ser");
                     } catch (IOException ex) {

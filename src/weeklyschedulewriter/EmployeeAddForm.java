@@ -100,7 +100,6 @@ public class EmployeeAddForm {
         availabilityPanel.add(availabilityLabel);
         
      
-        
         JPanel mondayFromToPanel = new JPanel();
         mondayFromToPanel.setLayout(new BoxLayout(mondayFromToPanel, X_AXIS));
         
@@ -181,8 +180,6 @@ public class EmployeeAddForm {
         
         
         
-        
-        
         JPanel fridayFromToPanel = new JPanel();
         fridayFromToPanel.setLayout(new BoxLayout(fridayFromToPanel, X_AXIS));
         
@@ -247,9 +244,7 @@ public class EmployeeAddForm {
 //******************************** END AVAILABILITY PANEL ******************************* 
 
 //******************************** START MAX / MIN PANEL ******************************* 
-
-       
-        
+ 
        JPanel minPanel = new JPanel();
        minPanel.setLayout(new BoxLayout(minPanel, BoxLayout.X_AXIS));
        JLabel minLabel = new JLabel("Minimum Hours");
@@ -272,8 +267,8 @@ public class EmployeeAddForm {
        frame.add(new JSeparator(SwingConstants.HORIZONTAL));
 //******************************** END MAX / MIN PANEL ******************************* 
     
-        JButton addEmployeeButton = new JButton("Add Employee");
         
+        JButton addEmployeeButton = new JButton("Add Employee");
         
         Action action = new AbstractAction() {
             @Override
@@ -283,15 +278,12 @@ public class EmployeeAddForm {
               
                 for (int i=0; i < jCheckBoxList.size(); i++){
                     if ( jCheckBoxList.get(i).isSelected()  ){
-                       // System.out.println("i wonder if this worked: " + jCheckBoxList.get(i).getText() );
                         tempRoles.add(jCheckBoxList.get(i).getText() );
                     }       
                 }
                 
                 temp.setJobroles(tempRoles);
-                
-                
-                
+               
                 int tempAvailability[] = { 1, monFrom.getSelectedIndex()-1,    monTo.getSelectedIndex()-1,
                                            2, tuesFrom.getSelectedIndex()-1,   tuesTo.getSelectedIndex()-1,
                                            3, wednesFrom.getSelectedIndex()-1, wednesTo.getSelectedIndex()-1,
@@ -317,18 +309,9 @@ public class EmployeeAddForm {
             }
         };
         
-        
         addEmployeeButton.addActionListener(action);
-        
-        
-        
-        
-        
-        
-        
+       
         frame.add(addEmployeeButton);
-
-
 
         frame.setVisible(true);
     }

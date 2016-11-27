@@ -24,6 +24,7 @@ public class Employee implements Serializable{
     ie:{1,8,21,2,0,24...} means: monday(1) available from 8am(8) to 9pm(21) , tuesday(2) available from midnight(0) to midnight(24). ...
     1 is 1am, 2 is 2am, ... , 11 is 11am, 12 is noon, 13 is 1pm, 14 is 2pm, etc 
      */
+    
     public Employee(String name) {
         this.name = name;
         this.jobroles = new ArrayList();
@@ -137,7 +138,6 @@ public class Employee implements Serializable{
             if (isAvailableToWorkShift(toCover)) {
 
                 if (!willPutIntoOvertime(toCover)) {
-                      System.out.println(this.name + " can work that shift");
                     toReturn = true;
                 }
 
@@ -148,11 +148,13 @@ public class Employee implements Serializable{
     }
 
     public boolean hasJobRole(Shift toCover) {//returns true if employee knows jobRole
+        
         boolean toReturn = false;
+        
         for (int i = 0; i < this.jobroles.size(); i++) {
+        
             if (toCover.jobrole.equals(this.jobroles.get(i))) {
                 toReturn = true;
-                // System.out.println(this.name + " knows how to do " + toCover.jobrole);
                 break;//as soon as jobrole matches, there is no need to continue checking
             }
         }
@@ -160,14 +162,14 @@ public class Employee implements Serializable{
     }
 
     public boolean isAvailableToWorkShift(Shift toCover) {//returns true if employee is available for those hours on that day
+        
         boolean toReturn = false;
-        // System.out.println("checking if " +this.name+ " is already scheduled for " + toCover.shift[0] );
+       
         if (!isAlreadyScheduledOn(toCover)) { //employee not already scheduled for that day
-            //  System.out.println("GREAT NEWS EVERYONE " + this.name+ " is not already schedule for " + + toCover.shift[0]);
 
-            for (int j = 0; j < 21; j = j + 3) {
+            for (int j = 0; j < 21; j = j + 3) {  //iterates 0,3,6etc  until daycode matches
 
-                if (toCover.shift[0] == this.availability[j] //iterates 0,3,6etc  until daycode matches
+                if (toCover.shift[0] == this.availability[j] 
                         && toCover.shift[1] >= this.availability[j + 1] //employee is available from start time
                         && toCover.shift[2] <= this.availability[j + 2]) {  //employee is avaiable until end time
 
@@ -185,8 +187,7 @@ public class Employee implements Serializable{
 
         if ((this.currentlyScheduledHours + (toCover.shift[2] - toCover.shift[1])) > this.maxHours) {
             toReturn = true;
-            System.out.println("That shift would put " + this.name + " at " + (this.currentlyScheduledHours + (toCover.shift[2] - toCover.shift[1])) + " hours\nfuckyou\n");
-        }
+            }
         return toReturn;
     }
 

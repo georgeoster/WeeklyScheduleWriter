@@ -3,9 +3,10 @@ package weeklyschedulewriter;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-/**
+/*
  * @author george
  */
+
 public class WeeklySchedule implements Serializable {
 
     ArrayList<Shift> shiftsForWeek;

@@ -2,7 +2,7 @@ package weeklyschedulewriter;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-/**
+/*
  * @author george
  */
 public class Employee implements Serializable{
